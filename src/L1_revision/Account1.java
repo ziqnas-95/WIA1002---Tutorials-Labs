@@ -16,6 +16,7 @@ public class Account1 {
     private int id;
     private double balance;
     private double annualInterestRate;
+    //Object of the Class Transaction are passed on into the list.
     private ArrayList<Transaction> flow;
 
     public Account1(String name, int id, double balance) {
@@ -23,6 +24,7 @@ public class Account1 {
         this.id = id;
         this.balance = balance;
         this.annualInterestRate = 0;
+        //Creating a new ledger for the Account created (list of transactions)
         this.flow = new ArrayList<>();
     }
 
@@ -76,6 +78,7 @@ public class Account1 {
     public void withdraw(double amount){
         if (amount <= this.balance){
             this.balance -= amount;
+            //this is adding a new object to the arraylist of Transaction
             flow.add(new Transaction('W', amount, this.balance, "Withdrawal"));
         }
         else
