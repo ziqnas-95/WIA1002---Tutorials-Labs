@@ -19,7 +19,7 @@ public class ReadMyLetter_23001539 {
     
     public static void main(String[] args) {
         
-        String filename = "src\\HaziqNasaruddin_23001539.txt";
+        String filename = "src\\L1_revision\\HaziqNasaruddin_23001539.txt";
                
         ReadFromFile(filename);
         AppendToFile(filename);
