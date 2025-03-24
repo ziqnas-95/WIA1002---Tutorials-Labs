@@ -16,7 +16,7 @@ public class Account1 {
     private int id;
     private double balance;
     private double annualInterestRate;
-    //Object of the Class Transaction are passed on into the list.
+    // creating an arraylist for the transactions of each of the accounts created
     private ArrayList<Transaction> flow;
 
     public Account1(String name, int id, double balance) {
@@ -24,12 +24,12 @@ public class Account1 {
         this.id = id;
         this.balance = balance;
         this.annualInterestRate = 0;
-        //Creating a new ledger for the Account created (list of transactions)
+        // initializing a new list (transactions list) for the account created 
         this.flow = new ArrayList<>();
     }
 
     
-    //setters and getters for the instance variables
+    // setters and getters for the instance variables
     public int getId() {
         return id;
     }
@@ -54,10 +54,6 @@ public class Account1 {
         this.annualInterestRate = annualInterestRate;
     }
 
-//    public String getDateCreated() {
-//        return sdf.format(dateCreated);
-//    }
-    
     public ArrayList<Transaction> getTransactions() {
         return flow;
     }
@@ -72,13 +68,14 @@ public class Account1 {
     
     public void deposit(double amount){
         this.balance += amount;
+        // method to add a new object to the arraylist with its parameters to initializee it.
         flow.add(new Transaction('D', amount, this.balance, "Deposit"));
     }
     
     public void withdraw(double amount){
         if (amount <= this.balance){
             this.balance -= amount;
-            //this is adding a new object to the arraylist of Transaction
+            // method to add a new object to the arraylist with its parameters to initializee it.
             flow.add(new Transaction('W', amount, this.balance, "Withdrawal"));
         }
         else
@@ -92,15 +89,17 @@ public class Account1 {
         System.out.println("Annual Interest Rate: " + annualInterestRate);
         System.out.printf("Account Balance     : %.2f\n", balance);
         System.out.println("Transactions ---------");
+        
+        // line 94 still needs improvement on the spacing between items 
         System.out.println("Date\t\tType\tAmount\tBalance\tDescription");
         for (Transaction e : flow){
             System.out.println(e);
         }
     
-    }
+    }  
     
     
-    //MAIN METHOD TO CREATE THE ACCOUNTS AND STORE ALL THE TRANSACTIONS
+    // main method to create a new account and also initializing the transaction list for the account
     public static void main(String[] args) {
         
         Account1 CIMB = new Account1("George",1122,1000);

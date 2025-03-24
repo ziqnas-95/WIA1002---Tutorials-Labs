@@ -13,11 +13,12 @@ import java.util.Date;
  */
 public class Transaction {
     
-//    private Date dateCreated;
     private char type;
     private double amount;
     private double balance;
     private String desc;
+    
+    
     private Date dateCreated = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     public String getDateCreated() {
@@ -56,7 +57,7 @@ public class Transaction {
     
     @Override
     public String toString() {
-    
+            // must refer to line 94 from Account1 to make improvement on the spacing
             String FN1 = String.format("%6.2f", amount);
             String FN2 = String.format("%.2f", balance);
             return this.getDateCreated() + "\t " + 
