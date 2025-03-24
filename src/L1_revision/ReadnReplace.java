@@ -16,10 +16,10 @@ public class ReadnReplace {
     
     public static void main(String[] args) {
         
-        replacing("text1.txt");
-        replacing("text2.txt");
-        replacing("text3.txt");
-        replacing("text4.txt");
+        replacing("src\\text1.txt");
+        replacing("src\\text2.txt");
+        replacing("src\\text3.txt");
+        replacing("src\\text4.txt");
                 
     }
     

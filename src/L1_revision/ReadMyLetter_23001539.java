@@ -18,16 +18,14 @@ import java.util.Scanner;
 public class ReadMyLetter_23001539 {
     
     public static void main(String[] args) {
-        String filename = "HaziqNasaruddin_23001539.txt";
-
+        
+        String filename = "src\\HaziqNasaruddin_23001539.txt";
+               
         ReadFromFile(filename);
         AppendToFile(filename);
         ReadFromFile(filename);
         
     }
-    
-    
-    
     
     public static void AppendToFile(String filename){
     
