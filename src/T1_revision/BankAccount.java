@@ -14,7 +14,6 @@ interface Account{
     boolean withdraw(int amtW);
 }
 
-
 public class BankAccount implements Account {
     
     public int balance;
@@ -22,7 +21,11 @@ public class BankAccount implements Account {
     public BankAccount(int balance) {
         this.balance = balance;
     }
-
+    
+    public int getBalance(){
+        return balance;
+    }
+    
     @Override
     public int deposit(int amtD) {
         this.balance += amtD;
@@ -42,6 +45,7 @@ public class BankAccount implements Account {
         BankAccount CIMB = new BankAccount(50);
         CIMB.deposit(100);
         System.out.println(CIMB.withdraw(150));
+        System.out.println(CIMB.getBalance());
     }
     
 }

@@ -53,6 +53,7 @@ public class Car extends Vehicle {
     }
 
     @Override
+    // must provide our own implementation of the method
     public void accelerate() {
         this.currentSpeed += 5;
         System.out.println("gogogo");

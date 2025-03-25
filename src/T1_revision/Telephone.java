@@ -10,26 +10,25 @@ package T1_revision;
  */
 public class Telephone {
     
-    //instance variables
+    // instance variables
     public String areaCode;
     public String number;
 
-    //constructor
+    // constructor
     public Telephone(String areaCode, String number) {
         this.areaCode = areaCode;
         this.number = number;
-        
         numberOfTelephoneObject++;
     }
     
-    //static variable that keeps track of the number of telephone objects created
+    // static variable that keeps track of the number of telephone objects created
     public static int numberOfTelephoneObject = 0;
     
     public int getNumTelephones(){
         return numberOfTelephoneObject;
     }
     
-    //accessor method
+    // accessor method
     public String getNumber(){
         return this.number;
     }
@@ -38,7 +37,7 @@ public class Telephone {
         return this.areaCode;
     }
     
-    //mutator method
+    // mutator method
     public void setNumber(String number){
         this.number = number;
     }
@@ -47,32 +46,40 @@ public class Telephone {
         this.areaCode = areaCode;
     }
     
-    //method that concantenates both values into a string
+    // method that concantenates both values into a string
     private String makeFullNumber(){
         return this.areaCode + "-" + this.number;
     }
     
     
-    //main method
+    // main method
     public static void main(String[] args) {
         
-        Telephone T1 = new Telephone("03","79676300");
-        Telephone T2 = new Telephone("03","79676301");
-        Telephone T3 = new Telephone("03","79676302");
-        Telephone T4 = new Telephone("03","79676303");
-        Telephone T5 = new Telephone("03","79676304");
+        // this normal array can be changed into an arraylist by using methods like add and replace.
+        // this array can also be done using a for loop to instantiate the telephone numbers
+//        Telephone T1 = new Telephone("03","79676300");
+//        Telephone T2 = new Telephone("03","79676301");
+//        Telephone T3 = new Telephone("03","79676302");
+//        Telephone T4 = new Telephone("03","79676303");
+//        Telephone T5 = new Telephone("03","79676304");
+//        
+//        Telephone[] array = {T1,T2,T3,T4,T5};
+
+        Telephone[] phone = new Telephone[5];
         
-        Telephone[] array = {T1,T2,T3,T4,T5};
+        for(int i = 0; i < 5; i++){
+            String full = "7967630" + (i);
+            phone[i] = new Telephone("03", full);
+        }
         
-        for (Telephone array1 : array) {
+        for (Telephone array1 : phone) {
             String code = array1.makeFullNumber();
             System.out.println(code);
         }
         
-        System.out.println("Number of telephone objects created: " + Telephone.numberOfTelephoneObject);
         
-        
+//        System.out.println("Number of telephone objects created: " + Telephone.numberOfTelephoneObject);
+                
     }
-    
     
 }

@@ -28,4 +28,4 @@ class A extends B {
     }
 }
 
-//the output of the following program is a."AB" 
+// the output of the following program is a. "AB" 

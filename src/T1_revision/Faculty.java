@@ -17,13 +17,16 @@ class Person {
 
 class Employee extends Person {
     public Employee(){
-        System.out.println("(2) Invoke Employee's overloaded constructor");
+        // this calls the arg-constructor with the String argument
+        this("(2) Invoke Employee's overloaded constructor");
         System.out.println("(3) Performs Employee's tasks");
     }
     
+    // constructor overloading
     public Employee(String s){
         System.out.println(s);
     }
+    
 }
 
 public class Faculty extends Employee{
@@ -32,6 +35,7 @@ public class Faculty extends Employee{
     }
     
     public static void main(String[] args) {
+        // this line is creating a new instance of the Faculty Class, also invoking the constructor of Faculty
         new Faculty();
     }
 
@@ -41,6 +45,8 @@ public class Faculty extends Employee{
  *  The program will print all the statements under all of the classes
  *  The Faculty class extends both Employee and Person classes causing
  *  all the statements created in the constructor are being called
+ * 
+ *  This is a form of inheritance with Parent and Child Class
  * 
  */
 
