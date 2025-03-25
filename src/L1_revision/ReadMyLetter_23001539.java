@@ -71,5 +71,13 @@ public class ReadMyLetter_23001539 {
     
 }
 
-
+/**
+ *  must add more comments of the code to help me understand it better
+ *  what is file writer and buffered writer
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 

@@ -14,6 +14,7 @@ import java.io.IOException;
  */
 public class ReadnReplace {
     
+    // can create an array of the the delimeters and create a more functional code (putting the delimeters of each text file)
     public static void main(String[] args) {
         
         replacing("src\\L1_revision\\text1.txt");
@@ -23,13 +24,13 @@ public class ReadnReplace {
                 
     }
     
-    //must use double bufferedReader which are used differently
+    // must use double bufferedReader which are used differently
     public static int countLine(String filename){
         
         int lineCount = 0;
         try (BufferedReader RFF = new BufferedReader(new FileReader(filename))){
             
-            //line count to declare an array
+            // line count to declare an array
             while(RFF.readLine() != null){
                 lineCount++;
             }
@@ -40,7 +41,7 @@ public class ReadnReplace {
         return lineCount;
     }
     
-    //replacing the special characters
+    // replacing the special characters
     public static void replacing(String filename){
             
         try (BufferedReader RFF = new BufferedReader(new FileReader(filename))){
@@ -60,7 +61,6 @@ public class ReadnReplace {
             if (filename.equalsIgnoreCase("text4.txt")){
                 
                 for (int j = 0; j < change.length; j++){
-                                       
                     String original = change[j];
                     String neworg = original.replaceAll("\\d","");
                     change[j] = neworg;
@@ -69,7 +69,7 @@ public class ReadnReplace {
             } 
             else {
                 
-                //replace special characters
+                // replace special characters
                 for (int j = 0; j < change.length; j++){
                     String original = change[j];
                     String neworg = original.replace(",","").replace(" ","").replace(";","");
@@ -78,7 +78,7 @@ public class ReadnReplace {
                 
             }
             
-            //count number of characters
+            // count number of characters
             int numChar = 0;
             for (String e : change){
                 numChar += e.length();
@@ -87,7 +87,7 @@ public class ReadnReplace {
             System.out.println("Number of lines     : " + size);
             System.out.println("Number of characters: " + numChar + "\nText:");
             
-            //print the file
+            // print the file
             for (String e : change){
                 System.out.println(e);
             }
