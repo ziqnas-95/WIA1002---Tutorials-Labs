@@ -1,0 +1,28 @@
+QUESTION 3
+What is a raw type? Why is a raw type unsafe? Why is the raw type allowed in Java? 
+
+A: 
+
+
+QUESTION 4
+What is erasure? Why are Java generics implements using erasure? 
+
+A: 
+
+
+QUESTION 9
+When the compiler encounters a generic class, interface, or method with an unbound type parameter, such as <T> or <E>, it replaces all occurrences of the type parameter with what type? 
+
+A: 
+
+
+QUESTION 10
+When the compiler encounters a generic class, interface, or method with a bound type parameter, such as <T extends Number> or <E extends Comparable>, it replaces all occurrences of the type parameter with what type? 
+
+A: 
+
+
+
+
+
+
