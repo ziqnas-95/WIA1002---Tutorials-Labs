@@ -8,7 +8,7 @@ package T2_Generics;
  *
  * @author Haziq Nasaruddin
  */
-public class Question4 {
+public class Question6 {
     
     public static void main(String[] args) {
         
