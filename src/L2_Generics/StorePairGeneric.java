@@ -8,7 +8,7 @@ package L2_Generics;
  *
  * @author Haziq Nasaruddin
  */
-public class StorePairGeneric<T> {
+public class StorePairGeneric<T> implements Comparable<StorePairGeneric<T>> {
     
     private T first;
     private T second;
@@ -35,7 +35,7 @@ public class StorePairGeneric<T> {
         return "first= " + first + "\tsecond= " + second;
     }
     
-    // override the equals() method
+    // b) override the Object equals() method
     public boolean equals(Object obj){
         if (this == obj){
             return true;
@@ -48,9 +48,12 @@ public class StorePairGeneric<T> {
         return first.equals(other.first);
     }
     
-    // hold this question first
-    
+    // c) implements the Comparable interface and override the compareTo method
+    @Override
+    public int compareTo(StorePairGeneric<T> other) {
+        
+        return ((Comparable) first).compareTo(other.first);
+        
+    }
 
-    
-    
 }
