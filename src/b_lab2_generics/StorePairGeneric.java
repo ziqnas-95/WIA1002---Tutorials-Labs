@@ -31,11 +31,13 @@ public class StorePairGeneric<T> implements Comparable<StorePairGeneric<T>> {
         this.second = second;
     }
     
+    @Override
     public String toString(){
         return "first= " + first + "\tsecond= " + second;
     }
     
     // b) override the Object equals() method
+    @Override
     public boolean equals(Object obj){
         if (this == obj){
             return true;

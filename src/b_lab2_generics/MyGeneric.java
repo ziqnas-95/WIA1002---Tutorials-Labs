@@ -13,7 +13,6 @@ public class MyGeneric<T> {
     protected T e;
     
     public MyGeneric(){
-    
     }
     
     public MyGeneric(T e){
