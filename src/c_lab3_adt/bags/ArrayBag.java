@@ -11,8 +11,19 @@ package c_lab3_adt.bags;
 public class ArrayBag<T> implements BagInterface<T> {
 
     private T[] bag;
-    private int DEFAULT_CAPACITY = 25;
+    private static int DEFAULT_CAPACITY = 25;
     private int numberOfEntries = 0;
+
+    
+    public ArrayBag(){
+        bag = (T[]) new Object[DEFAULT_CAPACITY];
+        numberOfEntries = 0;
+    }
+    
+    private ArrayBag(int capacity) {
+        bag = (T[]) new Object[capacity];
+        numberOfEntries = 0;
+    }
     
     @Override
     public int getCurrentSize() {
@@ -21,12 +32,12 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public boolean isFull() {
-        return bag.length >= DEFAULT_CAPACITY;
+        return numberOfEntries == bag.length;
     }
 
     @Override
     public boolean isEmpty() {
-        return bag.length == 0;
+        return numberOfEntries == 0;
     }
 
     @Override
@@ -41,54 +52,121 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public T remove() {
-        T result = removeEntry(numberOfEntries -1);
-        return result;
+        if (!isEmpty()){
+            T removedEntry = bag[numberOfEntries];
+            bag[numberOfEntries] = null;
+            numberOfEntries--;
+            return removedEntry;
+        }
+        return null;
     }
     
-    private T removeEntry(int indexWanted){
-        T result = null;
-        
-        if (!isEmpty() && bag.length > 0){
-            result = bag[indexWanted];
-            int lastID = numberOfEntries - 1;
-            bag[indexWanted] = bag[lastID];
-            bag[lastID] = null;
-            numberOfEntries--;
+    @Override
+    public boolean remove(T anEntry) {
+        if (!isEmpty()){
+            for (int i = 0; i < numberOfEntries; i++){
+                if (bag[i].equals(anEntry)){
+                    bag[i] = bag[numberOfEntries];
+                    bag[numberOfEntries] = null;
+                    numberOfEntries--;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void clear() {
+        while (!isEmpty()){
+            remove();
+        }
+    }
+
+    @Override
+    public int getFrequencyOf(T anEntry) {
+        int frequency = 0;
+        for (int i = 0; i < numberOfEntries; i++){
+            if (bag[i].equals(anEntry)){
+                frequency++;
+            }
+        }
+        return frequency;
+    }
+
+    @Override
+    public boolean contains(T anEntry) {
+        for (int i = 0; i < numberOfEntries; i++){
+            if (bag[i].equals(anEntry)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public T[] toArray() {
+        T[] result = (T[]) new Object[numberOfEntries];
+        for (int i = 0; i < numberOfEntries; i++){
+            result[i] = bag[i];
         }
         return result;
     }
 
-//    @Override
-//    public boolean remove(T anEntry) {
-//    }
-//
-//    @Override
-//    public void clear() {
-//    }
-//
-//    @Override
-//    public int getFrequencyOf(T anEntry) {
-//    }
-//
-//    @Override
-//    public boolean contains(T anEntry) {
-//    }
-//
-//    @Override
-//    public T[] toArray() {
-//    }
-//
-//    @Override
-//    public BagInterface<T> union(BagInterface<T> anotherBag) {
-//    }
-//
-//    @Override
-//    public BagInterface<T> intersection(BagInterface<T> anotherBag) {
-//    }
-//
-//    @Override
-//    public BagInterface<T> difference(BagInterface<T> anotherBag) {
-//    }
+    @Override
+    public BagInterface<T> union(BagInterface<T> anotherBag) {
+        BagInterface<T> unionBag = new ArrayBag<T>(this.getCurrentSize() + anotherBag.getCurrentSize());
+        for (T entry : this.toArray()){
+            unionBag.add(entry);
+        }
+        for (T entry : anotherBag.toArray()){
+            unionBag.add(entry);
+        }
+        return unionBag;
+    }
+
+    @Override
+    public BagInterface<T> intersection(BagInterface<T> anotherBag) {
+        BagInterface<T> intersectionBag = new ArrayBag<>();
+        
+        for (T entry : this.toArray()){
+            if (anotherBag.contains(entry) && !intersectionBag.contains(entry)){
+                int x = this.getFrequencyOf(entry);
+                int y = anotherBag.getFrequencyOf(entry);
+                if (x < y){
+                    for (int i = 0; i < x; i++){
+                        intersectionBag.add(entry);
+                    }
+                } else {
+                    for (int i = 0; i < y; i++){
+                        intersectionBag.add(entry);
+                    }
+                }
+                
+            }
+        }
+        return intersectionBag;
+    }
+
+    @Override
+    public BagInterface<T> difference(BagInterface<T> anotherBag) {
+        BagInterface<T> differenceBag = new ArrayBag<>();
+        
+        for (T entry : this.toArray()){
+            if (anotherBag.contains(entry) && !differenceBag.contains(entry)){
+                int x = this.getFrequencyOf(entry);
+                int y = anotherBag.getFrequencyOf(entry);
+                if (y < x){
+                    for (int i = 0; i < x-y; i++){
+                        differenceBag.add(entry);
+                    }
+                
+                }
+            }
+        }
+        return differenceBag;
     
+        
+    }
     
 }
