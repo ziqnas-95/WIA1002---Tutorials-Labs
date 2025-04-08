@@ -37,7 +37,7 @@ public class ArrayBagDemo {
         System.out.println("\n");
         
         System.out.println("Bag 3, test the method union of Bag1 and Bag2: ");
-        ArrayBag<String> bag3 = (ArrayBag<String>) bag1.union(bag2);    // why do we need casting here?
+        ArrayBag<String> bag3 = (ArrayBag<String>) bag1.union(bag2);    
         System.out.println("The bag contains " + bag3.getCurrentSize() + " string(s), as follows: ");
         displayBag(bag3);
         System.out.println("\n");
@@ -69,11 +69,20 @@ public class ArrayBagDemo {
     }
     
     private static void displayBag(BagInterface<String> aBag){
+        
+//  - Method 1 to print the array
         String output = Arrays.toString(aBag.toArray()).replace("[", "").replace("]", "").replace(",","");
         System.out.print(output);
+
+
+//  - Method 2 to print the array
+        Object[] other = aBag.toArray();
+        for (Object s : other){
+            System.out.print(s + " ");
+        }
+        
     }
 }
-
 
 /** In essence, this exercise of creating a bag is basically setting the maximum capacity for the bag (array)
     
@@ -81,8 +90,5 @@ public class ArrayBagDemo {
     and not the capacity of the bag. Which gives the idea that the bag is dynamic sizing.
     
     Questions
-    (a) Why can't I do the displayBag() method like usual. (The basic iterating through an array and print them)... In this case, the program will
-        show a run time error saying that the Object class cannot be cast to the String Class.
-    
     
     */
