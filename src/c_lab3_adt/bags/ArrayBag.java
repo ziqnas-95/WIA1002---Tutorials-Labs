@@ -66,6 +66,7 @@ public class ArrayBag<T> implements BagInterface<T> {
         if (!isEmpty()){
             for (int i = 0; i < numberOfEntries; i++){
                 if (bag[i].equals(anEntry)){
+                    
                     bag[i] = bag[numberOfEntries];
                     bag[numberOfEntries] = null;
                     numberOfEntries--;
@@ -115,7 +116,7 @@ public class ArrayBag<T> implements BagInterface<T> {
 
     @Override
     public BagInterface<T> union(BagInterface<T> anotherBag) {
-        BagInterface<T> unionBag = new ArrayBag<T>(this.getCurrentSize() + anotherBag.getCurrentSize());
+        BagInterface<T> unionBag = new ArrayBag<>(this.getCurrentSize() + anotherBag.getCurrentSize());
         for (T entry : this.toArray()){
             unionBag.add(entry);
         }
@@ -142,12 +143,15 @@ public class ArrayBag<T> implements BagInterface<T> {
                         intersectionBag.add(entry);
                     }
                 }
-                
             }
         }
         return intersectionBag;
     }
 
+    
+    /** Encountering problem here because it is not the same for the opposite function...
+        Must adjust the code so that it is possible that it can work both ways...
+        */
     @Override
     public BagInterface<T> difference(BagInterface<T> anotherBag) {
         BagInterface<T> differenceBag = new ArrayBag<>();
@@ -160,13 +164,13 @@ public class ArrayBag<T> implements BagInterface<T> {
                     for (int i = 0; i < x-y; i++){
                         differenceBag.add(entry);
                     }
+                } 
                 
-                }
+            } else if (!anotherBag.contains(entry)){
+                differenceBag.add(entry);
             }
         }
         return differenceBag;
-    
-        
     }
     
 }

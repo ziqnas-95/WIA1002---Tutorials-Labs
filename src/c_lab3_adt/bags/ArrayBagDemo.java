@@ -37,21 +37,27 @@ public class ArrayBagDemo {
         System.out.println("\n");
         
         System.out.println("Bag 3, test the method union of Bag1 and Bag2: ");
-        ArrayBag<String> bag3 = (ArrayBag<String>) bag1.union(bag2);
+        ArrayBag<String> bag3 = (ArrayBag<String>) bag1.union(bag2);    // why do we need casting here?
         System.out.println("The bag contains " + bag3.getCurrentSize() + " string(s), as follows: ");
         displayBag(bag3);
         System.out.println("\n");
         
-        System.out.println("Bag 4, test the method intersection of bag1 and bag2: ");
+        System.out.println("Bag 4, test the method intersection of Bag1 and Bag2: ");
         ArrayBag<String> bag4 =  (ArrayBag<String>) bag1.intersection(bag2);
         System.out.println("The bag contains " + bag4.getCurrentSize() + " string(s), as follows: ");
         displayBag(bag4);
         System.out.println("\n");
         
-        System.out.println("Bag 5, test the method difference of bag1 and bag2: ");
+        System.out.println("Bag 5, test the method difference of Bag1 and Bag2: ");
         ArrayBag<String> bag5 = (ArrayBag<String>) bag1.difference(bag2);
         System.out.println("The bag contains " + bag5.getCurrentSize() + " string(s), as follows: ");
         displayBag(bag5);
+        System.out.println("\n");
+        
+        System.out.println("Bag 6, test the method difference of Bag2 and Bag1: ");
+        ArrayBag<String> bag6 = (ArrayBag<String>) bag2.difference(bag1);
+        System.out.println("The bag contains " + bag6.getCurrentSize() + " string(s), as follows: ");
+        displayBag(bag6);
         System.out.println("\n");
 
     }
@@ -67,3 +73,16 @@ public class ArrayBagDemo {
         System.out.print(output);
     }
 }
+
+
+/** In essence, this exercise of creating a bag is basically setting the maximum capacity for the bag (array)
+    
+    But, we can add and remove items in the bag and the bag is considered dynamic sizing as the index we used are based on the entries we put in
+    and not the capacity of the bag. Which gives the idea that the bag is dynamic sizing.
+    
+    Questions
+    (a) Why can't I do the displayBag() method like usual. (The basic iterating through an array and print them)... In this case, the program will
+        show a run time error saying that the Object class cannot be cast to the String Class.
+    
+    
+    */
