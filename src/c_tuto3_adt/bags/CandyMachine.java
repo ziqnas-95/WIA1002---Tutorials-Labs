@@ -10,7 +10,6 @@ import java.util.Scanner;
  *
  * @author Haziq Nasaruddin
  * 
- * rest jap japgi sambung balik 
  * 
  */
 public class CandyMachine {
@@ -22,7 +21,8 @@ public class CandyMachine {
      * @param args 
      */
     public static void main(String[] args) {
-                
+        
+        CashRegister register1 = new CashRegister(10.50);
         Dispenser[] snacks = new Dispenser[4];
         snacks[0] = new Dispenser("Cookies",1.50,10);
         snacks[1] = new Dispenser("Chips",1.50,10);
@@ -34,6 +34,7 @@ public class CandyMachine {
         Scanner scan = new Scanner(System.in);
         int itemSln;
         int itemQty;
+        double amtPaid;
         
         /**
          * ask user to input selection
@@ -42,11 +43,24 @@ public class CandyMachine {
         itemSln = scan.nextInt();
         System.out.print("Quantity: ");
         itemQty = scan.nextInt();
+        
         while (snacks[itemSln].canDispense(itemQty) == false){
             System.out.println(snacks[itemSln].getQuantity() + " is in stock");
             System.out.print("Reenter quantity:");
             itemQty = scan.nextInt();
         }
+        
+        System.out.println("Insert amount of money to be paid: ");
+        amtPaid = scan.nextDouble();
+        
+        while (register1.isEnough(amtPaid, (snacks[itemSln].getPrice()*itemQty)) == false){
+            System.out.print("Reenter amount of money:");
+            amtPaid = scan.nextInt();
+        }
+        
+        snacks[itemSln].dispenseItem(itemQty);
+        System.out.println("Money change : " + register1.calculateChange(amtPaid, snacks[itemSln].getPrice()*itemQty));  
+        
 
     }
     
@@ -63,81 +77,14 @@ public class CandyMachine {
         }
     }
     
-    
-    
-    
-    
-    
-}
-
-class Dispenser {
-
-    // instance variables
-    String name;
-    double price;
-    int quantity;
-
-    // operation & methods
-    public Dispenser(String name, double price, int quantity){
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
-    
-    public void addStock(int newStock){
-        this.quantity += newStock;
-    }
-    
-    public String getName(){
-        return name;
-    }
-    
-    public double getPrice(){
-        return price;
-    }
-    
-    public int getQuantity(){
-        return quantity;
-    }
-    
-    public double getTotalPrice(int quantity){
-        return price*quantity;
-    }
-    
-    public boolean canDispense(int amount){
-        return amount <= quantity;
-    }
-    
-    public void dispenseItem(int amount){
-        this.quantity -= amount;
-    }
+    /** Methods:
+        (1) Showing the customer the different products sold by the candy machine | Iterating through the array and 
+        (2) Let the customer make the selection
+        (3) Show the customer the cost of the item selected
+        (4) Accept money from the customer
+        (5) Return the change
+        (6) Releasing the item
+        */
     
 }
 
-class CashRegister {
-    
-    // instance variables
-    double cashOnHand;
-
-    // operations & methods
-    public CashRegister(){
-        this.cashOnHand = 0;
-    }
-    
-    public CashRegister(double amountAdded){
-        this.cashOnHand = amountAdded;
-    }
-    
-    public void acceptMoney(double amountPaid){
-        this.cashOnHand += amountPaid;
-    }
-    
-    public double calculateChange(double amountPaid, double itemCost){
-        return amountPaid-itemCost;
-    }
-    
-    public double getCashOnHand(){
-        return cashOnHand;
-    }
-    
-}
