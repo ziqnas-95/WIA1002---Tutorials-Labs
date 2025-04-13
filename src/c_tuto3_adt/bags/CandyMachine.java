@@ -22,6 +22,7 @@ public class CandyMachine {
      */
     public static void main(String[] args) {
         
+        // instantiate the dispensers for the snacks and the cash register to store the money
         CashRegister register1 = new CashRegister(10.50);
         Dispenser[] snacks = new Dispenser[4];
         snacks[0] = new Dispenser("Cookies",1.50,10);
@@ -31,60 +32,83 @@ public class CandyMachine {
         
         displayItemDetails(snacks);
         
+        // including scanner class for input and variables to hold the user's inputs
         Scanner scan = new Scanner(System.in);
         int itemSln;
         int itemQty;
-        double amtPaid;
+        double changeAmt;
         
         /**
          * ask user to input selection
          */
-        System.out.print("Please choose one item (Enter code of the item): ");
-        itemSln = scan.nextInt();
-        System.out.print("Quantity: ");
-        itemQty = scan.nextInt();
-        
-        while (snacks[itemSln].canDispense(itemQty) == false){
-            System.out.println(snacks[itemSln].getQuantity() + " is in stock");
-            System.out.print("Reenter quantity:");
-            itemQty = scan.nextInt();
-        }
-        
-        System.out.println("Insert amount of money to be paid: ");
-        amtPaid = scan.nextDouble();
-        
-        while (register1.isEnough(amtPaid, (snacks[itemSln].getPrice()*itemQty)) == false){
-            System.out.print("Reenter amount of money:");
-            amtPaid = scan.nextInt();
-        }
-        
-        snacks[itemSln].dispenseItem(itemQty);
-        System.out.println("Money change : " + register1.calculateChange(amtPaid, snacks[itemSln].getPrice()*itemQty));  
-        
-
+        itemSln = askForSelection(scan);
+        itemQty = askForAmount(scan, snacks[itemSln]);
+        changeAmt = askForPayment(scan, snacks[itemSln], itemQty, register1);
+        System.out.printf("Change amount is: %.2f\n",changeAmt);
+        displayItemDetails(snacks);
     }
     
     /**
-     * show the customer the different products sold by the machine
+     * method to show the customer the different products sold by the machine
      * @param item is the 4 different snacks created as an instance to the Dispenser Class
      */
     public static void displayItemDetails(Dispenser[] item){
-        System.out.println("Code | Item");
+        System.out.println("Code | Item    | Quantity");
         int i = 0;
         for (Dispenser items : item){
-            System.out.println("[" + i + "]    " + items.getName());
+            System.out.println("[" + i + "]    " + items.getName() + "\t " + items.getQuantity());
             i++;
         }
     }
+        
+    public static int askForSelection(Scanner scan){
+        int itemSelection;
+        boolean validSelection = false;
+        System.out.print("Please choose one item (Enter code of the item): ");
+        itemSelection = scan.nextInt(); // include exception if the selection is not in range
+        
+        while (validSelection == false){
+            if (itemSelection < 4 && itemSelection > -1){
+                break;
+            }
+            System.out.print("Please reenter the item code: ");
+            itemSelection = scan.nextInt();
+        }
+        return itemSelection;
+    } // DONE 
     
-    /** Methods:
-        (1) Showing the customer the different products sold by the candy machine | Iterating through the array and 
-        (2) Let the customer make the selection
-        (3) Show the customer the cost of the item selected
-        (4) Accept money from the customer
-        (5) Return the change
-        (6) Releasing the item
-        */
+    public static int askForAmount(Scanner scan, Dispenser item){
+        int amtSelection;
+        boolean validSelection = false;
+        System.out.print("Please enter number of items: ");
+        amtSelection = scan.nextInt(); // include exception if the selection is not in range
+        
+        while (validSelection == false){
+            if (amtSelection <= item.getQuantity()){
+                break;
+            }
+            System.out.print("Please reenter the amount of item: ");
+            amtSelection = scan.nextInt();
+        }
+        return amtSelection;
+    }
     
+    public static double askForPayment(Scanner scan, Dispenser item, int quantity, CashRegister register){
+        double payment;
+        boolean validPayment = false;
+        System.out.print("Please enter amount to pay: ");
+        payment = scan.nextDouble(); // include exception if the selection is not in range
+        
+        while (validPayment == false){
+            if (payment >= (item.getPrice()*quantity)){
+                break;
+            }
+            System.out.print("Please reenter payment amount: ");
+            payment = scan.nextDouble();
+        }
+        item.dispenseItem(quantity);
+        return register.calculateChange(payment, item.getPrice()*quantity);
+    }
+
 }
 
