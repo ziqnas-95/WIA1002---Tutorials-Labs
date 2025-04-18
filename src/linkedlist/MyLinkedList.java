@@ -57,6 +57,52 @@ public class MyLinkedList<E> {
         
     }
     
+    public E removeFirst(){
+        if (size == 0){
+            return null;
+        } else {
+            Node<E> temp = head;
+            head = head.next;
+            size--;
+            return temp.element;
+        }
+    }
+    
+    public E removeLast(){
+        if (size == 0){
+            return null;
+        } else {
+            Node<E> current = head;
+            for (int i = 1; i < size-1; i++){
+                current = current.next;
+            }
+            Node<E> temp = current.next;
+            tail = current;
+            tail.next = null;
+            size--;
+            return temp.element;
+        }
+    }
+    
+    public E remove(int index){
+        E decision;
+        if (size == 0 || size == 1){
+            decision = removeFirst();
+        } else if (index >= size){
+            decision = removeLast();
+        } else {
+            Node<E> current = head;
+            for (int i = 1; i < index; i++){
+                current = current.next;
+            }
+            Node<E> temp = current.next;
+            current.next = (current.next).next;
+            size--;
+            return temp.element;
+        }
+        return decision;
+    }
+    
     public void print(){
         Node<E> current = head;
         for (int i = 0; i < size; i++){
@@ -78,6 +124,10 @@ public class MyLinkedList<E> {
         list.addFirst("ha");
         list.addLast("haziq");
         list.add(1, "haziq nasaruddin");
+        list.print();
+        list.removeLast();
+        list.removeFirst();
+        list.remove(1);
         list.print();
     }
     
