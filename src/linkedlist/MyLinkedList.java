@@ -219,6 +219,15 @@ public class MyLinkedList<E> {
         System.out.println("");
     }
     
+    public E getMiddleValue(){
+        int mid = size/2;
+        Node<E> current = head;
+        for (int i = 1; i <= mid; i++){
+            current = current.next;
+        }
+        return current.element;
+    }
+    
     public static void main(String[] args) {
         
         MyLinkedList<Character> list = new MyLinkedList<>();
@@ -274,6 +283,10 @@ public class MyLinkedList<E> {
         list.set(2, 'v');
         list.set(3, 'a');
         list.print();
+        
+        System.out.println(list.getMiddleValue());
+        
+        
     }
     
 }
