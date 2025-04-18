@@ -286,7 +286,5 @@ public class MyLinkedList<E> {
         
         System.out.println(list.getMiddleValue());
         
-        
     }
-    
 }
