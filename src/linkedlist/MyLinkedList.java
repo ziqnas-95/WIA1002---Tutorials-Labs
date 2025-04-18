@@ -103,6 +103,101 @@ public class MyLinkedList<E> {
         return decision;
     }
     
+    
+    public boolean contains(E e){
+        Node<E> current = head;
+        boolean isTrue = false;
+        for (int i = 1; i < size; i++){
+            if (current.element == e){
+                isTrue = true;
+                break;
+            }
+        }
+        return isTrue;
+    }
+    
+    public E get(int index){
+        if (size == 0){
+            return null;
+        } else {
+            Node<E> current = head;
+            for (int i = 1; i < index; i++){
+                current = current.next;
+            }
+            return current.element;
+        }
+    }
+    
+    public E getFirst(){
+        if (size == 0){
+            return null;
+        } else {
+            return head.element;
+        }
+    }
+    
+    public E getLast(){
+        if (size == 0){
+                return null;
+            } else {
+                return tail.element;
+            }
+    }
+    
+    public int indexOf(E e){
+        if (contains(e) == false){
+            return -1;
+        }
+        Node<E> current = head;
+        for (int i = 0; i < size; i++){
+            if (current.element == e){
+                return i;
+            }
+            current = current.next;
+        }
+        return -1;
+    }
+    
+    public int lastIndexOf(E e){
+        int update = 0;
+        if (contains(e) == false){
+            return -1;
+        }
+        Node<E> current = head;
+        for (int i = 0; i < size; i++){
+            if (current.element == e){
+                update = i;
+            }
+            current = current.next;
+        }
+        return update;
+    }
+    
+    public E set(int index, E e){
+        Node<E> temp = head;
+        if (size == 0){
+            addFirst(e);
+        } else if (index >= size){
+            set(size-1, e);
+        } else {
+            Node<E> current = head;
+            for (int i = 0; i < size; i++){
+                if (index == i){
+                    temp = current;
+                    current.element = e;
+                }
+                current = current.next;
+            }
+        }
+        return temp.element;
+    }
+    
+    public void clear(){
+        while (size != 0){
+            removeLast();
+        }
+    }
+    
     public void print(){
         Node<E> current = head;
         for (int i = 0; i < size; i++){
@@ -113,22 +208,23 @@ public class MyLinkedList<E> {
     
     }
     
-    
-    
+    public void reverse(){
+        E[] revArray = (E[]) new Object[size];
+        Node<E> current = head;
+        for (int i = 0; i < size; i++){
+            revArray[i] = current.element;
+            current = current.next;
+        }
+        for (int j = size-1; j >= 0; j--){
+            System.out.print(revArray[j] + " ");
+        }
+    }
     
     public static void main(String[] args) {
         
-        MyLinkedList<String> list = new MyLinkedList<>();
+        MyLinkedList<Character> list = new MyLinkedList<>();
         
-        list.addFirst("h");
-        list.addFirst("ha");
-        list.addLast("haziq");
-        list.add(1, "haziq nasaruddin");
-        list.print();
-        list.removeLast();
-        list.removeFirst();
-        list.remove(1);
-        list.print();
+        
     }
     
 }
