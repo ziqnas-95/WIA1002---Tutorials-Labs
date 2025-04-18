@@ -103,17 +103,15 @@ public class MyLinkedList<E> {
         return decision;
     }
     
-    
     public boolean contains(E e){
         Node<E> current = head;
-        boolean isTrue = false;
-        for (int i = 1; i < size; i++){
+        for (int i = 0; i < size; i++){
             if (current.element == e){
-                isTrue = true;
-                break;
+                return true;
             }
+            current = current.next;
         }
-        return isTrue;
+        return false;
     }
     
     public E get(int index){
@@ -138,28 +136,29 @@ public class MyLinkedList<E> {
     
     public E getLast(){
         if (size == 0){
-                return null;
-            } else {
-                return tail.element;
-            }
+            return null;
+        } else {
+            return tail.element;
+        }
     }
     
     public int indexOf(E e){
-        if (contains(e) == false){
-            return -1;
-        }
-        Node<E> current = head;
-        for (int i = 0; i < size; i++){
+        if (contains(e) == true){
+            Node<E> current = head;
+            for (int i = 0; i < size; i++){
             if (current.element == e){
                 return i;
             }
             current = current.next;
+            }
+        } else {
+            return -1;
         }
         return -1;
     }
     
     public int lastIndexOf(E e){
-        int update = 0;
+        int update = indexOf(e);
         if (contains(e) == false){
             return -1;
         }
@@ -201,11 +200,10 @@ public class MyLinkedList<E> {
     public void print(){
         Node<E> current = head;
         for (int i = 0; i < size; i++){
-            System.out.println(current.element);
+            System.out.print(current.element + " ");
             current = current.next;
         }
-        
-    
+        System.out.println("");
     }
     
     public void reverse(){
@@ -218,13 +216,64 @@ public class MyLinkedList<E> {
         for (int j = size-1; j >= 0; j--){
             System.out.print(revArray[j] + " ");
         }
+        System.out.println("");
     }
     
     public static void main(String[] args) {
         
         MyLinkedList<Character> list = new MyLinkedList<>();
         
+        /**
+         *  (a) Append the following: a, b, c, d, e
+         *  (b) Print all the elements in the list
+         */
+        list.addLast('a');
+        list.addLast('b');
+        list.addLast('c');
+        list.addLast('d');
+        list.addLast('e');
+        list.print();
         
+        /**
+         *  (c) Reverse all the elements in the list
+         */
+        //  printing just the reverse
+        list.reverse();
+        
+        // literally reversing the list
+        for (int i = 1; i <= 4; i++){
+            char temp = list.get(5-i);
+            list.addLast(temp);
+        }
+        for (int i = 1; i <= 4; i++){
+            list.removeFirst();
+        }
+        list.print();
+        
+        /**
+         *  (d) Retrieve the number of elements in the list
+         *  (e) Retrieve first and last value
+         *  (f) Delete the third value
+         */
+        System.out.println("Number of elements in the list: " + (list.indexOf(list.getLast()) + 1));
+        System.out.println("First value: " + list.getFirst());
+        System.out.println("Last value: " + list.getLast());
+        list.remove(2);
+        
+        /**
+         *  (g) Retrieve the index location for the first and third value
+         *  (h) Checks if the list has the value 'c'
+         */
+        int second = list.indexOf(list.get(2));
+        int third = list.indexOf(list.get(3));
+        System.out.println(second + " " + third);
+        
+        System.out.println("Contains 'c'? " + list.contains('c'));
+        list.set(0, 'j');
+        list.set(1, 'a');
+        list.set(2, 'v');
+        list.set(3, 'a');
+        list.print();
     }
     
 }
