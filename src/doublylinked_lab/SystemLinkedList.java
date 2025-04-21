@@ -160,6 +160,7 @@ public class SystemLinkedList<E> {
         System.out.println("\nYou have entered the following students' name :");
         students.printList();
         
+        // removing student input
     }
 
 }
