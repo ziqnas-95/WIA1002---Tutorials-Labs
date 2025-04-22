@@ -63,10 +63,11 @@ public class SystemLinkedList<E> {
             
         } else {
             temp = head;
-            for (int i = 1; i < index; i++){
+            for (int i = 0; i < index; i++){
                 temp = temp.next;
             }
             temp.next = (temp.next).next;
+            head = temp;
             size--;
         }
     }
@@ -127,40 +128,105 @@ public class SystemLinkedList<E> {
         
         //  Create a list first....
         SystemLinkedList<String> students = new SystemLinkedList<>();
-        
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter your student name list. Enter 'n' to end......");
-        String name = scan.nextLine();
+        
+        String name, replace, option;
+        
+        banner1();
+        name = scan.nextLine();
         while (name.equals("n") == false) {
             students.add(name);
             name = scan.nextLine();
         }
         
-        System.out.println("\nYou have entered the following students' name :");
+        banner2();
         students.printList();
         
-        System.out.printf("\nThe number of students entered is : %d\n", students.getSize());
+        banner3(); System.out.println(students.getSize());
         
         // correct names?
-        System.out.println("All the names entered are correct? Enter 'r' to rename the student name, 'n' to proceed...");
-        String option = scan.next();
+        banner4();
+        option = scan.next();
         while (option.equals("r")){
-            System.out.println("Enter the existing student name that u want to rename :");
+            banner5();
             name = scan.next();
             while (students.contains(name) == false){
-                System.out.println("Not in list, please enter the existing student name that u want to rename :");
+                banner5c();
                 name = scan.next();
             }
             break;
         } 
-        System.out.println("Enter the new name :");
-        String replace = scan.next();
+        banner5b();
+        replace = scan.next();
         students.replace(name, replace);
         
-        System.out.println("\nYou have entered the following students' name :");
+        banner2b();
         students.printList();
         
         // removing student input
+        banner4b();
+        option = scan.next();
+        while (option.equals("y")){
+            banner5d();
+            name = scan.next();
+            while (students.contains(name) == false){
+                banner5c();
+                name = scan.next();
+            }
+            break;
+        } 
+        students.removeElement(name);
+        
+        banner3b(); System.out.println(students.getSize());
+        banner2b(); 
+        students.printList();
+        
+        System.out.println("All student data captured complete. Thank you...");
     }
-
+    
+    public static void banner1(){
+        System.out.println("Enter your student name list. Enter 'n' to end...");
+    }
+    
+    public static void banner2(){
+        System.out.println("You have entered the following students name :");
+    }
+    
+    public static void banner2b(){
+        System.out.println("The new student list is :");
+    }
+    
+    public static void banner3(){
+        System.out.print("The number of students entered is :");
+    }
+    
+    public static void banner3b(){
+        System.out.print("The number of updated students are :");
+    }
+    
+    public static void banner4(){
+        System.out.println("All the names are entered correct? Enter 'r' to rename the student name, 'n' to proceed.");
+    }
+    
+    public static void banner4b(){
+        System.out.println("Do you want to remove any of your student from the list? Enter 'y' for yes, 'n' to proceed?");
+    }
+    
+    public static void banner5(){
+        System.out.println("Enter the existing student name to rename :");
+    }
+    
+    public static void banner5b(){
+        System.out.println("Enter the new name : ");
+    }
+    
+    public static void banner5c(){
+        System.out.println("Name is not in the list. Please enter an existing name : ");
+    }
+    
+    public static void banner5d(){
+        System.out.println("Enter the existing student name to remove :");
+    }
+    
+    
 }
