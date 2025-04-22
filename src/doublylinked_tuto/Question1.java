@@ -19,7 +19,7 @@ public class Question1 {
 //        else if (index >= size - 1) {
 //            this.addLast(e);
 //            return null;
-//        } else if (index == 0) {
+//        } else if (index == 0) {     cut off this part of code as it is redundant
 //            temp = head;
 //            head.element = e;
 //            return temp.element;

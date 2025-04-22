@@ -34,10 +34,38 @@ public class Question2 {
 //        Node<E> pointerB = head;
 //
 //        for (int i=0; i < size; i++){
-//            if (current.element == e){
+//            if (pointerB.element == e){
 //                return true;
 //            }
-//            pointerB.next = pointerB;
+//            pointerB = pointerB.next;
 //        }
 //        return false;
+//    }
+
+
+
+
+
+
+/**
+ *  a) Based on the figure, the name of the method for the operation is removeLast.
+ * 
+ *  b) Write code to represent the figure.
+ * 
+ */
+
+//    public E removeLast(){
+//        if (size == 0){
+//            return null;
+//        } else {
+//            Node<E> pointer1 = head;
+//            for (int i = 1; i < size-1; i++){
+//                pointer1 = pointer1.next;
+//            }
+//            Node<E> temp = pointer1.next;
+//            tail = pointer1;
+//            tail.next = null;
+//            size--;
+//            return temp.element;
+//        }
 //    }
