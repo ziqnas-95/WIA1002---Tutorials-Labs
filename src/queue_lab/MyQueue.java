@@ -14,7 +14,7 @@ public class MyQueue<E> {
     
     public MyQueue(E[] e){
         for (E els:e){
-            list.addLast(els);
+            list.add(els);
         }
     }
     
