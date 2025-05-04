@@ -56,3 +56,37 @@ public class MyQueue<E> {
     }
     
 }
+
+class TestProgram{
+
+    public static void main(String[] args) {
+        
+        String[] array = {"Durian","Blueberry"};
+        
+        MyQueue<String> fruits = new MyQueue<>(array);
+        
+        fruits.enqueue("Apple");
+        fruits.enqueue("Orange");
+        fruits.enqueue("Grape");
+        fruits.enqueue("Cherry");
+        
+        System.out.println(fruits.toString());
+        
+        System.out.println(fruits.peek());
+        
+        System.out.println("Queue size: " + fruits.getSize());
+        
+        fruits.dequeue();
+        
+        System.out.println(fruits.getElement(2));
+        
+        System.out.println("Contains Cherry: " + fruits.contains("Cherry"));
+        
+        System.out.println("Contains Durian: " + fruits.contains("Durian"));
+        
+        if (fruits.isEmpty() == false){
+            System.out.println(fruits.toString());
+        }
+    }
+
+}
