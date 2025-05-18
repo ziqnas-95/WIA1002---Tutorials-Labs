@@ -53,7 +53,7 @@ public class PriorityQueueDemo {
         }
         
         // Example 4: Using a custom comparator
-        PriorityQueue<Task> deadlineQueue = new PriorityQueue<>(Comparator.comparing(Task::getAmount));
+        PriorityQueue<Task> deadlineQueue = new PriorityQueue<>(Comparator.comparing(Task::getAmount).reversed());
                 
         deadlineQueue.add(new Task("Task A", 2, "2023-12-15",120));
         deadlineQueue.add(new Task("Task B", 3, "2023-11-20",112));
