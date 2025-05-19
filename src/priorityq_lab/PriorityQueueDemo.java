@@ -21,6 +21,7 @@ public class PriorityQueueDemo {
         minHeap.add(5);
         minHeap.add(15);
         minHeap.add(1);
+        minHeap.offer(34);
         
         System.out.println("Min Heap Priority Queue:");
         while (!minHeap.isEmpty()) {
@@ -48,12 +49,13 @@ public class PriorityQueueDemo {
         taskQueue.add(new Task("Write documentation", 2));
         
         System.out.println("\nTask Priority Queue (by priority):");
+             
         while (!taskQueue.isEmpty()) {
             System.out.println(taskQueue.poll()); // Will print tasks in order of priority
         }
         
         // Example 4: Using a custom comparator
-        PriorityQueue<Task> deadlineQueue = new PriorityQueue<>(Comparator.comparing(Task::getAmount).reversed());
+        PriorityQueue<Task> deadlineQueue = new PriorityQueue<>(Comparator.comparing(Task::getDeadline));
                 
         deadlineQueue.add(new Task("Task A", 2, "2023-12-15",120));
         deadlineQueue.add(new Task("Task B", 3, "2023-11-20",112));
@@ -99,7 +101,7 @@ class Task implements Comparable<Task> {
     public int compareTo(Task other) {
         // Compare by priority (lower number = higher priority)
 //        return Integer.compare(this.priority, other.priority);
-        return Integer.compare(other.priority, this.priority);
+        return Integer.compare(other.priority, this.priority); 
     }
     
     @Override
