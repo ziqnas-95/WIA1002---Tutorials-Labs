@@ -41,9 +41,11 @@ public class IntegerArray {
         }
         
         //peek method
+        System.out.println("");
         System.out.println(intQ.peek());
         
         //contains method
+        System.out.println("");
         System.out.println(intQ.contains(1));
         
         //size method
