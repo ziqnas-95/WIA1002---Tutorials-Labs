@@ -10,12 +10,13 @@ package priorityq_lab;
  */
 import java.util.Queue;
 import java.util.PriorityQueue;
+import java.util.Comparator;
 
 public class TestComparableBook {
 
     public static void main(String[] args) {
 
-        Queue<ComparableBook> BookQueue = new PriorityQueue<>();
+        Queue<ComparableBook> BookQueue = new PriorityQueue<>(Comparator.comparing(ComparableBook::getName).reversed());
 
         BookQueue.add(new ComparableBook(1065, "Effective Java: Third Edition"));
         BookQueue.add(new ComparableBook(3012, "Java: A Beginner Guide Seventh Edition"));
@@ -42,6 +43,10 @@ class ComparableBook implements Comparable<ComparableBook>{
     public ComparableBook(int code, String name){
         this.code = code;
         this.name = name;
+    }
+    
+    public String getName(){
+        return this.name;
     }
     
     @Override
