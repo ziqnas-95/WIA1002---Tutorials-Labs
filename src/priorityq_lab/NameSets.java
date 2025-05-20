@@ -22,12 +22,12 @@ public class NameSets {
         String[] name1 = {"GEORGE","JIM","JOHN","BLAKE","KEVIN","MICHAEL"};
         String[] name2 = {"GEORGE","KATIE","KEVIN","MICHELLE","RYAN"};
         
-        for(String x : name1){
+        for(String x : name1)
             set1.add(x);
-        }
-        for(String y : name2){
+        
+        for(String y : name2)
             set2.add(y);
-        }
+        
         System.out.print("PRIORITYQ 1: ");
         while (!set1.isEmpty()){
             System.out.print(set1.poll() + " ");
@@ -39,13 +39,12 @@ public class NameSets {
         }
         
         System.out.println("\n");
-        for(String x : name1){
+        for(String x : name1)
             set1.add(x);
-        }
-        for(String y : name2){
-            set2.add(y);
-        }
         
+        for(String y : name2)
+            set2.add(y);
+                
         Set<String> union = new TreeSet<>(set1);
         union.addAll(set2);
         System.out.println("Union: " + union);
