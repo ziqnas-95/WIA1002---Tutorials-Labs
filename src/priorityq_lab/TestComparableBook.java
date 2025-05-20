@@ -16,7 +16,9 @@ public class TestComparableBook {
 
     public static void main(String[] args) {
 
-        Queue<ComparableBook> BookQueue = new PriorityQueue<>(Comparator.comparing(ComparableBook::getName).reversed());
+//        Queue<ComparableBook> BookQueue = new PriorityQueue<>(Comparator.comparing(ComparableBook::getName).reversed());
+//        Queue<ComparableBook> BookQueue = new PriorityQueue<>(Comparator.comparing(ComparableBook::getName));
+        Queue<ComparableBook> BookQueue = new PriorityQueue<>();
 
         BookQueue.add(new ComparableBook(1065, "Effective Java: Third Edition"));
         BookQueue.add(new ComparableBook(3012, "Java: A Beginner Guide Seventh Edition"));
@@ -26,11 +28,15 @@ public class TestComparableBook {
 
         System.out.println(BookQueue);
 
-        while (BookQueue.peek() != null) {
-            System.out.println("Head Element:\t" + BookQueue.peek());
-            BookQueue.remove();
-            System.out.println("Priority queue:\t" + BookQueue);
-            System.out.println("");
+//        while (BookQueue.peek() != null) {
+//            System.out.println("Head Element\t:" + BookQueue.peek());
+//            BookQueue.remove();
+//            System.out.println("Priority queue\t:" + BookQueue);
+//            System.out.println("");
+//        }
+        
+        while(!BookQueue.isEmpty()){
+            System.out.println(BookQueue.poll());
         }
     }
 }
@@ -51,17 +57,13 @@ class ComparableBook implements Comparable<ComparableBook>{
     
     @Override
     public int compareTo(ComparableBook other) {
-        return Integer.compare(this.code, other.code);
-//        return Integer.compare(other.code, this.code);
+//        return Integer.compare(this.code, other.code);
+        return Integer.compare(other.code, this.code);
     }
 
     @Override
     public String toString() {
-//        return "ComparableBook{" +
-//                "bookId=" + code +
-//                ", title='" + name + '\'' +
-//                "}";
-        
-        return "ID: " + code + "  TITLE: " + name + " ";
+//        return "ID: " + code + "  TITLE: " + name + " ";
+        return code + "-" + name;
     }
 }
