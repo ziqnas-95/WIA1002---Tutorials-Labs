@@ -8,6 +8,15 @@ package graph_tuto;
  *
  * @author Haziq Nasaruddin
  */
-public class testest {
+public class TestGraph {
+    
+    String[] vertices = {"Selangor","Kuala Lumpur","Kedah","Perak","Terengganu","Sabah","Sarawak"};
+    
+    
+}
+
+class Vertex {
+
+    private String name;
     
 }
