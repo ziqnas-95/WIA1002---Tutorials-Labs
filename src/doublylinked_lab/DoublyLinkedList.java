@@ -184,7 +184,7 @@ public class DoublyLinkedList<E> {
     }
     
     public void clear(){
-    
+        int value = size;
         DLLNode<E> temp = head;
         while (head != null){
             temp = head.next;
@@ -194,6 +194,12 @@ public class DoublyLinkedList<E> {
         temp = null;
         tail.prev = tail.next = null;
         size = 0;
+        System.out.println("successfully clear " + value + " node(s)");
+    }
+    
+    public int getSize(){
+        System.out.println("size of current DLL: " + size);
+        return size;
     }
     
     public static void main(String[] args) {
@@ -204,7 +210,6 @@ public class DoublyLinkedList<E> {
         list.addFirst(13);
         list.addLast(3);
         list.add(2, 67);
-        
         list.traverseForward();
         list.traverseBackward();
         
