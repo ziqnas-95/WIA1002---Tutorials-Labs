@@ -91,27 +91,3 @@ public class SList<E> {
     
 }
 
-
-class TestSList {
-
-    public static void main(String[] args) {
-        
-        SList<String> ayat = new SList<>();
-        
-        ayat.appendEnd("Linked list");
-        ayat.appendEnd("is");
-        ayat.appendEnd("easy");
-        ayat.display();
-        
-        ayat.removeInitial();
-        ayat.contains("difficult");
-        ayat.clear();
-        
-    }
-
-
-
-
-
-
-}
