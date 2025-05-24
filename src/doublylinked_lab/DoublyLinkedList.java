@@ -4,6 +4,8 @@
  */
 package doublylinked_lab;
 
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author Haziq Nasaruddin
@@ -94,36 +96,105 @@ public class DoublyLinkedList<E> {
     public void traverseForward(){
         
         System.out.println("traversing forward..");
-        DLLNode<E> temp = head;
-        while (temp != null){
-            System.out.print(temp.element + " ");
-            temp = temp.next;
+        
+        if (size == 0){
+            System.out.println("UPDATE - No elements to traverse through...");
+        } else {
+            DLLNode<E> temp = head;
+            while (temp != null){
+                System.out.print(temp.element + " ");
+                temp = temp.next;
+            }
+            System.out.println("");
         }
-        System.out.println("");
     }
     
     public void traverseBackward(){
         
         System.out.println("traversing backward..");
-        DLLNode<E> temp = tail;
-        while (temp != null){
-            System.out.print(temp.element + " ");
-            temp = temp.prev;
+        
+        if (size == 0){
+            System.out.println("UPDATE - No elements to traverse through..");
+        } else {
+            DLLNode<E> temp = tail;
+            while (temp != null){
+                System.out.print(temp.element + " ");
+                temp = temp.prev;
+            }
+            System.out.println("");
         }
-        System.out.println("");
+    }
+    
+    public E removeFirst(){
+    
+        if (size == 0){
+            throw new NoSuchElementException();
+        }
+        
+        DLLNode<E> tmp = head;
+        
+        head = head.next;
+        head.prev = null;
+        size--;
+        System.out.println("deleted: " + tmp.element);
+        return tmp.element;
     }
     
     
+    public E removeLast(){
+        
+        if (size == 0){
+            throw new NoSuchElementException();
+        }
+        
+        DLLNode<E> tmp = tail;
+        
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+        System.out.println("deleted: " + tmp.element);
+        return tmp.element;
+    }
     
+    public E remove(int index){
     
+        E element = null;
+        
+        if (index < 0 || index >= size){
+            throw new IndexOutOfBoundsException();
+        } else if (index == 0){
+            removeFirst();
+        } else if (index == size-1){
+            removeLast();
+        } else {
+            DLLNode<E> temp = head;
+            for (int i = 0; i < index; i++){
+                temp = temp.next; //although iterate till 2, but temp will point to the next node
+            }
+            
+            element = temp.element;
+            temp.next.prev = temp.prev;
+            temp.prev.next = temp.next;
+            temp.next = null;
+            temp.prev = null;
+            System.out.println("deleted: " + element);
+            size--;
+        }
+        return element;
+    }
     
+    public void clear(){
     
-    
-    
-    
-    
-    
-    
+        DLLNode<E> temp = head;
+        while (head != null){
+            temp = head.next;
+            head.prev = head.next = null;
+            head = temp;
+        }
+        temp = null;
+        tail.prev = tail.next = null;
+        size = 0;
+    }
     
     public static void main(String[] args) {
         
@@ -136,5 +207,8 @@ public class DoublyLinkedList<E> {
         
         list.traverseForward();
         list.traverseBackward();
+        
+        list.clear();
+        list.traverseForward();
     }
 }
