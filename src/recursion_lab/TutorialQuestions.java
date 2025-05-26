@@ -64,13 +64,22 @@ public class TutorialQuestions {
     /**
      * QUESTION 4: Calculating the sum of the integer N to 1
      */
-    public static int calculateSum(int N){
+    public static int sum(int N){
 	if (N == 1){
 		return N;
 	} else {
-		return N + calculateSum(N-1);
+		return N + sum(N-1);
 	}
     }
+    /**
+     * Solution Tracer:
+     * sum(5) = 5 + sum(4)
+     *        = 5 + 4 + sum(3)
+     *        = 5 + 4 + 3 + sum(2)
+     *        = 5 + 4 + 3 + 2 + sum(1)
+     *        = 5 + 4 + 3 + 2 + 1
+     */
+    
     
     
     /**
