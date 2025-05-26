@@ -16,7 +16,7 @@ public class TutorialQuestions {
         reverseString2("My name is Muhammad Haziq bin Nasaruddin");
         System.out.println(" ");
         System.out.println(reverseString1("String"));
-        printDigit(-4567);
+        printDigit(4567);
         
     }
     
