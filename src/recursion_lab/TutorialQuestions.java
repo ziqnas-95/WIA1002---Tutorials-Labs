@@ -12,7 +12,7 @@ public class TutorialQuestions {
     
     public static void main(String[] args) {
         
-        System.out.println(calculateSum(5));
+        System.out.println(sum(5));
         reverseString2("My name is Muhammad Haziq bin Nasaruddin");
         System.out.println(" ");
         System.out.println(reverseString1("String"));
