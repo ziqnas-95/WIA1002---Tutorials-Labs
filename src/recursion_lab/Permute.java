@@ -12,32 +12,36 @@ public class Permute {
     
     public static void main(String[] args) {
         
-        permutate("abc");
+        perm("SUPER");
         
     }
     
-    public static void permutate(String str){
-    
-        int n = str.length();
+    public static void perm(String x){
         
-        if (n == 1){
-            System.out.print(str);
+        permutate("",x);
+    }
+    
+    public static void permutate(String prefix, String str){
+        
+        int size = str.length();
+        
+        if (size == 0){
+            System.out.println(prefix);
+            
         } else {
         
-            for (int i = 0; i < n; i++){
+            for (int i = 0; i < size; i++){
             
-                char firstChar = str.charAt(i);
-                String tbr = String.valueOf(firstChar);
-                
-                String remaining = str.replaceFirst(tbr, "");
-                
-                permutate(remaining);
-                
+                char head = str.charAt(i);
+
+                String remain = str.substring(0, i) + str.substring(i+1, str.length());
+                permutate(prefix + head, remain);
+        
             }
         
-        
-        
         }
+    
+        
     
     }
     
