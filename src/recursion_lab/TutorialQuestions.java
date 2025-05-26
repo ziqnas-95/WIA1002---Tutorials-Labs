@@ -13,8 +13,9 @@ public class TutorialQuestions {
     public static void main(String[] args) {
         
         System.out.println(calculateSum(5));
-        reverseString("My name is Muhammad Haziq bin Nasaruddin");
+        reverseString2("My name is Muhammad Haziq bin Nasaruddin");
         System.out.println(" ");
+        System.out.println(reverseString1("String"));
         printDigit(-4567);
         
     }
@@ -22,11 +23,26 @@ public class TutorialQuestions {
     /**
      * QUESTION 3: Reversing a String 
      */
-    public static void reverseString(String myStr){
+    public static String reverseString1(String myStr){
     
         /**
          * Base Case: When string length equals to one;
          * Recursive Case: When string length two or more;
+         */
+        if (myStr.length() == 1){
+            return myStr;
+        } else {
+            return reverseString1(myStr.substring(1)) + myStr.charAt(0); 
+            //recurse the method first then only print out the back one.
+        }
+        
+    }
+    
+    public static void reverseString2(String myStr){
+    
+        /**
+         * Base Case: When string length equals to one.
+         * Recursive Case: When string length two or more.
          */
         
         if (myStr.isEmpty()){
@@ -39,9 +55,9 @@ public class TutorialQuestions {
             char tmp = myStr.charAt(myStr.length()-1);
             System.out.print(tmp);
             String next = myStr.substring(0, myStr.length()-1); //last index is exclusive
-            reverseString(next);
+            reverseString2(next);
         }
-        
+
     }
     
     
