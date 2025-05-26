@@ -13,13 +13,14 @@ public class Exponent {
     public static void main(String[] args) {
         
         System.out.println(exponent(10,3));
+        System.out.println(exponent(2,2));
         
     }
     
     public static long exponent(int x, int m){
     
         if (m > 0){
-            return x * exponent(10, m-1);
+            return x * exponent(x, m-1);
         } else {
             return 1;
         }
