@@ -78,3 +78,14 @@ public class TutorialQuestions {
         }
     }
 }
+
+/**
+ * QUESTION 1:
+ * The problem is that there is no base case for when the argument is equals to 0.
+ * Causes the method to go into an infinite loop (infinite recursion).
+ * 
+ * QUESTION 2: 
+ * The problem is that no argument is being given to the method.
+ * The method could not be executed.
+ * 
+ */
