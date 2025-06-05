@@ -7,7 +7,7 @@ package stacks_lab;
 
 /**
  *
- * @author LENOVO
+ * @author Haziq Nasaruddin
  */
 public class TestGenericStack {
   public static void main(String[] args) {
