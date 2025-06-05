@@ -4,8 +4,6 @@
  */
 package search;
 
-import java.util.Arrays;
-
 /**
  *
  * @author Haziq Nasaruddin
@@ -17,7 +15,7 @@ public class BinarySearch {
         int high = list.length - 1;
         int mid = (low + high)/2;
         
-        while (low <= high){
+        while (low < high){
             if (key == list[mid]){
                 return mid;
             } else if (key < list[mid]){
@@ -31,32 +29,38 @@ public class BinarySearch {
     }
     
     public static int[] sortArray(int[] list){
-    
-        for (int i = 0; i < list.length; i++){
         
-            for (int j = 0; j < list.length; j++){
-                if (i == list.length-1){
-                } else if (list[i] > list[i+1]){
-                    int temp = list[i+1];
-                    list[i+1] = list[i];
-                    list[i] = temp;
+        int[] lex = list;
+    
+        for (int i = 0; i < lex.length; i++){
+        
+            for (int j = 0; j < lex.length; j++){
+                if (j == lex.length-1){
+                } else if (lex[j] > lex[j+1]){
+                    int temp = lex[j+1];
+                    lex[j+1] = lex[j];
+                    lex[j] = temp;
+                } else {
+                
                 }
             }
             
         }
-        return list;
+        
+        return lex;
     }
     
     public static void main(String[] args) {
         
-        int[] array = {1,2,3,4,5,6,5,4,7,6,4,8};
-        int[] arrayS  = sortArray(array);
+        int[] arrayhihi = {1,2,3,4,5,6,5,4,7,6,4,8};
+        int[] radical = sortArray(arrayhihi);
+        int[] proper = {1,2,3,4,5,6,7,8};
 //        
-//        for (int n : array){
+//        for (int n : radical){
 //            System.out.print(n + " ");
 //        }
-//        
-        System.out.println(binarySearch(arrayS,10));
+        
+        System.out.println(binarySearch(proper,4));
         
     }
     
