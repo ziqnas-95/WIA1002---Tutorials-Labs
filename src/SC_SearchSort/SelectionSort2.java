@@ -1,7 +1,7 @@
 package SC_SearchSort;
 
 
-public class SelectionSort {
+public class SelectionSort2 {
   public static void selectionSort(double[] list) {
     for (int i = 0; i < list.length - 1; i++) {
       double currentMin = list[i];
