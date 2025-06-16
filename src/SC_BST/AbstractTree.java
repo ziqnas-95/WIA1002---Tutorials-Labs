@@ -1,6 +1,6 @@
 
 
-package bullshit_lab;
+package SC_BST;
 
 public abstract class AbstractTree<E> implements Tree<E> {
     @Override /** Inorder traversal from the root*/
@@ -17,6 +17,6 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     @Override /** Return true if the tree is empty */
     public boolean isEmpty() {
-      return getSize() == 0;
+        return getSize() == 0;
     }
 }

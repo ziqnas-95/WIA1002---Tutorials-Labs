@@ -1,4 +1,4 @@
-package bullshit_lab;
+package SC_BST;
 
 public interface Tree<E> extends Iterable<E> {
     /** Return true if the element is in the tree */

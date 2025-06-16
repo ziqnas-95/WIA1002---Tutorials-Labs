@@ -1,4 +1,4 @@
-package bullshit_lab;
+package SC_BST;
 
 public class TestBST {
   public static void main(String[] args) {
